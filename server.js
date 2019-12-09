@@ -1,21 +1,12 @@
 const Express = require('express')
-
-const router = Express.Router();
+const bodyParser =  require('body-parser')
+const router = require('./api/routes')
 const app = Express()
 
-app.use(router)
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}))
 
-router.get('/mensaje', (req, res) => {
-    res.send("Este es el mensaje.")
-})
-router.post('/mensaje', (req, res) =>{
-    res.send("Mensaje creado :) !")
-})
-router.put('/mensaje', (req, res) => {
-    res.send("Mensaje cambiado :D !")
-})
-
-
+router(app)
 
 app.listen(3000)
 console.log("App Listening in http://localhost:3000")
