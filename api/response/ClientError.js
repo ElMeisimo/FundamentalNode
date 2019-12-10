@@ -2,12 +2,12 @@ const Response = require('./Response')
 
 class ClientError extends Response {
     constructor(res){
-        super(res, 200)
+        super(res)
         this.body = 0
     }
 
     printErrorLog( error_detail ){
-        this.internalLog = error_detail + error_detail.stack
+        this.internalLog = error_detail
         this.logsHead = "client error"
         super.printlog( "error" )
         return this

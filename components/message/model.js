@@ -1,15 +1,30 @@
-const list = []
-
+const db = require('mongoose')
+const Message = require('./schema')
 class MessageModel {
 
-  constructor() {}
+  constructor() {
+    db.Promise = global.Promise
+    db.connect(
+      "mongodb+srv://meisimo_db:IcFXHIvz6vLKZhrX@cluster0-uotnc.mongodb.net/test?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      }
+    )
+    console.log('[db] Connected!')
+  }
   
-  createMessage( newMessage ){
-    list.push( newMessage )
+  async createMessage( newMessageData ){
+    const newMessage = new Message( newMessageData )
+    const messageId = await newMessage.save()
+
+    return messageId._id
   }
 
-  getMessagesList() {
-    return [...list];
+  async getMessagesList() {
+    const messages = await Message.find()
+
+    return messages
   }
 }
 

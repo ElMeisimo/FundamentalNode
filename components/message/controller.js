@@ -3,35 +3,27 @@ const MessageModel = require('./model')
 
 class MessageController {
 
-  static addMessage(user, messageTxt) {
-    return new Promise((resolve, reject) => {
-      if (!user || !messageTxt) {
-        reject(new IncompleteInfoError())
-      }
-      const newMessage = {
-        user,
-        message: messageTxt,
-        createdAt: new Date()
-      }
-      const message = new MessageModel()
+  static async addMessage(user, text) {
+    if (!user || !text) { throw new IncompleteInfoError() }
 
-      message.createMessage(newMessage)
-      resolve("Message created.")
-    })
+    const newMessage = {
+      user,
+      text,
+      date: new Date()
+    }
+    const message = new MessageModel()
+    const id = await message.createMessage(newMessage)
+
+    return `Message created, id: ${id}`
   }
 
-  static getMessages(){
-    return new Promise( (resolve, reject) => {
-      const message = new MessageModel()
-      const messagesList = message.getMessagesList()
-      
-      resolve(messagesList)
-    })
+  static async getMessages() {
+    const message = new MessageModel()
+    const messagesList = message.getMessagesList()
+
+    return messagesList
   }
 
 }
-
-
-
 
 module.exports = MessageController
