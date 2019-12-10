@@ -54,6 +54,26 @@ class MessageController {
       }
     }
   }
+
+  static async updateMessage(req, res) {
+    const response = new Success(res)
+    const { id } = req.params
+    const { text } = req.body
+    const result = await messageService.messageUpdate(id, text)
+
+    response.ok(' updateMessage ')
+  }
+
+  static async changeMessage(req, res) {
+    const response = new Success(res)
+    response.ok(' changeMessage ')
+  }
+
+  static async deleteMessage(req, res) {
+    const response = new Success(res)
+    response.ok(' deleteMessage ')
+  }
+
 }
 
 module.exports = MessageController
