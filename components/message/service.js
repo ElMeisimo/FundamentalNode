@@ -14,7 +14,7 @@ class MessageService {
     const message = new MessageModel()
     const id = await message.createMessage(newMessage)
 
-    return `Message created, id: ${id}`
+    return id
   }
 
   static async getMessages() {

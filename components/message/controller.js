@@ -31,13 +31,11 @@ class MessageController {
 
   static async createMessage(req, res) {
     try {
-
       const { user, message } = req.body
       const response = new Success(res)
-      const result = await messageService.addMessage(user, message)
+      const id = await messageService.addMessage(user, message)
 
-      response.created({ text: result })
-
+      response.created({ text: "Message created.", id })
     } catch (error) {
       if (error instanceof MessageException) {
         const response = new ClientError(res)
