@@ -26,6 +26,15 @@ class MessageModel {
 
     return messages
   }
+
+  async addText(id, text){
+    const messages = await Message.findOne( id )
+    
+    messages.text += text
+    messages.save()
+
+    return true
+  }
 }
 
 module.exports = MessageModel

@@ -19,9 +19,17 @@ class MessageService {
 
   static async getMessages() {
     const message = new MessageModel()
-    const messagesList = message.getMessagesList()
+    const messagesList = await message.getMessagesList()
 
     return messagesList
+  }
+
+  static async messageUpdate(id, text){
+    if( !id || !text ){ throw new IncompleteInfoError() }
+    const message = new MessageModel({ id })
+    const result = await message.addText( text )
+    
+    return result
   }
 }
 
