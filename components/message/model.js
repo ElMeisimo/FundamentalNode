@@ -1,5 +1,5 @@
 const connect = require('../../database/conection')
-const Message = require('./schema')
+const Message = require('./schema').Model
 const IncompleteInfoError = require('./errors/controller/IncompleteRequestMessageException')
 
 class MessageModel {

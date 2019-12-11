@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const COLECTION = "Messages"
 const mySchema = new Schema({
   user: {
     type: String,
@@ -14,7 +15,9 @@ const mySchema = new Schema({
     required: true
   }
 })
+const Model = mongoose.model(COLECTION, mySchema)
 
-
-module.exports =  mongoose.model("Messages", mySchema)
-// mongodb+srv://meisimo_db:IcFXHIvz6vLKZhrX@cluster0-uotnc.mongodb.net/test?retryWrites=true&w=majority
+module.exports =  {
+  Model, 
+  COLECTION
+}
