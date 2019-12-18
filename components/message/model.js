@@ -24,9 +24,7 @@ class MessageModel {
       .keys( filters )
       .forEach( key =>  filters[key] === undefined && delete filters[key])
 
-    const messages = await Message.find( filters, "user text date" )
-
-    return messages
+    return Message.find( filters ).populate('user')
   }
 
   async addText(_id, text) {

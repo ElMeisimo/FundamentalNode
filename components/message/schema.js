@@ -1,9 +1,11 @@
+const UserCOLLECTION = require('../user/schema').COLLECTION
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const COLECTION = "Messages"
+const COLECTION = "Messages3"
 const mySchema = new Schema({
   user: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: UserCOLLECTION,
     required: true
   },
   text: {

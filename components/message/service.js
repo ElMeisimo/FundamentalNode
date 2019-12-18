@@ -11,8 +11,18 @@ class MessageService {
 
   static async getMessages(id, user, text, date) {
     const message = new MessageModel()
-    const messagesList = await message.getMessagesList(id, user, text, date)
-    
+    const messages = await message.getMessagesList(id, user, text, date)
+    const messagesList = Array(messages.length)
+
+    messages.forEach( (msg, i_msg) => 
+      messagesList[i_msg] = {
+        id: msg._id,
+        text: msg.text,
+        user: msg.user.user_name,
+        date: msg.date
+      }
+    )
+
     return messagesList
   }
 

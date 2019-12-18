@@ -6,7 +6,8 @@ function connect(){
     "mongodb+srv://meisimo_db:IcFXHIvz6vLKZhrX@cluster0-uotnc.mongodb.net/test?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useCreateIndex: true,
     }
   )
 }
